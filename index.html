@@ -1,0 +1,901 @@
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AutoSMM 2.0 веб панель</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sidebar-menu.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main-content.css">
+<link rel="stylesheet" href="css/button-effects.css">
+<link rel="stylesheet" href="css/enhanced-button-effects.css">
+<link rel="stylesheet" href="css/tooltips.css">
+<link rel="stylesheet" href="css/card-tooltips.css">
+<link rel="stylesheet" href="css/construction-styles.css">
+<link rel="stylesheet" href="css/liquid-glass.css">
+<link rel="stylesheet" href="css/spheres-page.css">
+<link rel="stylesheet" href="css/edit-sphere-modal.css">
+<link rel="stylesheet" href="css/content-sets.css">
+<link rel="stylesheet" href="css/content-source-modal.css">
+<link rel="stylesheet" href="css/ai-autoposting-sets.css">
+<link rel="stylesheet" href="css/analytics-dashboard.css">
+<link rel="stylesheet" href="css/enhanced-source-modal.css">
+<link rel="stylesheet" href="css/ai-source-suggestions-modal.css">
+<link rel="stylesheet" href="css/instructions-section.css">
+<link rel="stylesheet" href="css/force-left-align.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Unbounded:wght@600;700&amp;display=swap" rel="stylesheet">
+<script src="templates/page-templates.js"></script>
+<script src="js/modal-fix.js"></script>
+<script src="js/content-source-modal.js"></script>
+<script src="js/ai-autoposting-wizard.js"></script>
+<script src="js/analytics-manager.js"></script>
+<script src="js/content-manager.js" defer></script>
+<script src="js/menu-handler.js" defer></script>
+<script src="js/navigation.js" defer></script>
+<script src="js/tooltip-handler.js" defer></script>
+<script src="js/enhanced-source-modal.js" defer></script>
+<script src="js/ai-source-suggestions-modal.js" defer></script>
+</head>
+<body>
+    <aside class="sidebar"><!-- Top section --><div class="top-menu">
+            <!-- Bot icon -->
+            <div class="icon-container active">
+                <div class="bot-icon-wrapper">
+                    <img src="images/bot-icon-1.svg" alt="Бот"><img src="images/bot-icon-2.svg" alt="Бот">
+</div>
+            </div>
+            
+            <!-- Home icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="home">
+                    <img src="images/home-icon.svg" alt="Главная">
+                </div>
+                <div class="tooltip primary">
+                    <span class="tooltip-title">Главная</span>
+                    <span class="tooltip-description">Вернуться на главную страницу с обзором всех функций</span>
+                </div>
+            </div>
+            
+            <!-- Briefcase icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="manageSpheres">
+                    <img src="images/briefcase-icon.svg" alt="Портфель">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Мои сферы деятельности</span>
+                    <span class="tooltip-description">Добавить новые бренды для AI генерации</span>
+                </div>
+            </div>
+            
+            <!-- RSS icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="manageContentSets">
+                    <img src="images/rss-icon.svg" alt="RSS">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Мои наборы с контентом для Ai AutoSMM</span>
+                    <span class="tooltip-description">Добавить новостные и конкурентные Telegram каналы, и RSS источники</span>
+                </div>
+            </div>
+            
+            <!-- Plus icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="createPost">
+                    <img src="images/plus-icon.svg" alt="Добавить">
+                </div>
+                <div class="tooltip success">
+                    <span class="tooltip-title">Создать новый пост с AI</span>
+                    <span class="tooltip-description">Быстрое создание контента с помощью искусственного интеллекта</span>
+                </div>
+            </div>
+            
+            <!-- Globe icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="mySocialNetworks">
+                    <img src="images/globe-icon.svg" alt="Глобус">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Мои социальные сети</span>
+                    <span class="tooltip-description">Управление подключенными социальными сетями</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notification bell -->
+        <div class="tooltip-wrapper">
+            <div class="notification-icon" data-page="notifications">
+                <img src="images/bell-icon.svg" alt="Уведомления">
+            </div>
+            <div class="tooltip">
+                <span class="tooltip-title">Уведомления</span>
+                <span class="tooltip-description">Центр уведомлений и важных сообщений</span>
+            </div>
+        </div>
+        
+        <!-- Bottom section -->
+        <div class="bottom-menu">
+            <!-- Settings icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="aiAutoposting">
+                    <img src="images/settings-combined.svg" alt="Настройки">
+                </div>
+                <div class="tooltip warning">
+                    <span class="tooltip-title">Настройки этапов быстрого запуска</span>
+                    <span class="tooltip-description">Перейти к настройкам этапов быстрого запуска 100% Ai автоматизации СММ</span>
+                </div>
+            </div>
+            
+            <!-- Comments icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="comments">
+                    <img src="images/comments-icon.svg" alt="Комментарии">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Комментарии</span>
+                    <span class="tooltip-description">Управление комментариями в ваших постах</span>
+                </div>
+            </div>
+            
+            <!-- Night/Day mode icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="themeSettings">
+                    <img src="images/night-day-icon.svg" alt="Ночной режим">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Тема оформления</span>
+                    <span class="tooltip-description">Переключение между светлой и темной темой</span>
+                </div>
+            </div>
+            
+            <!-- Comment alt icon -->
+            <div class="tooltip-wrapper">
+                <div class="icon-container" data-page="support">
+                    <img src="images/comment-alt-icon.svg" alt="Комментарий">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltip-title">Поддержка</span>
+                    <span class="tooltip-description">Техническая поддержка и помощь</span>
+                </div>
+            </div>
+        </div>
+    </aside><!-- Раскрывающееся меню боковой панели --><div class="sidebar-menu"><div class="sidebar-menu open">
+        <div class="header menu-interactive">
+            <div class="user-info">
+                <div class="user-icon">
+                    <img src="images/user-icon.svg" alt="Пользователь">
+</div>
+                <span class="logo-text">AutoSMM.ru</span>
+            </div>
+            <button class="expand-button">
+                <img src="images/arrow-icon.svg" alt="Свернуть"></button>
+        </div>
+
+        <div class="stat-cards menu-interactive">
+            <div class="stat-card">
+                <span class="stat-title">Сегодня создано постов</span>
+                <span class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Запущенные AI автопостинги</span>
+                <span class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Ошибки</span>
+                <span class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Опубликовано постов сегодня</span>
+                <span class="stat-value">0</span>
+            </div>
+        </div>
+
+        <div class="recommendation-card menu-interactive">
+            <div class="rec-info">
+                <img src="images/marketolog-icon.svg" alt="Маркетолог"><span class="rec-title">Рекомендации
+маркетолога</span>
+            </div>
+            <span class="rec-count">7</span>
+        </div>
+
+        <div class="menu-links menu-interactive">
+            <a href="#" class="menu-item">
+                <span class="menu-text">Начало работы с АвтоСММ
+(Перейти в дашборд)</span>
+                <img src="images/arrow-right-icon.svg" alt="→" class="arrow-icon"></a>
+            <hr class="menu-divider">
+<a href="#" class="menu-item">
+                <span class="menu-text">Создать пост за 1 клик</span>
+                <img src="images/arrow-right-icon.svg" alt="→" class="arrow-icon"></a>
+            <hr class="menu-divider">
+<a href="#" class="menu-item">
+                <span class="menu-text">Создать контент-план</span>
+                <img src="images/arrow-right-icon.svg" alt="→" class="arrow-icon"></a>
+            <hr class="menu-divider">
+<div class="menu-item-dropdown">
+                <a href="#" class="menu-item">
+                    <span class="menu-text">Настройки профиля</span>
+                    <img src="images/arrow-icon.svg" alt="↓" class="arrow-icon"></a>
+                <div class="submenu">
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Подключить ВКонтакте</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Подключить Telegram</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Подключить Яндекс Дзен</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Мои контакты для продающих постов</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="menu-divider">
+<div class="menu-item-dropdown active">
+                <a href="#" class="menu-item">
+                    <span class="menu-text">Мои социальные сети</span>
+                    <img src="images/arrow-icon.svg" alt="↓" class="arrow-icon" style="transform: rotate(180deg);"></a>
+                <div class="submenu active">
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">ВКонтакте</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Telegram</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Яндекс Дзен</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="menu-divider">
+<div class="menu-item-dropdown">
+                <a href="#" class="menu-item">
+                    <span class="menu-text">Мои сферы деятельности</span>
+                    <img src="images/arrow-icon.svg" alt="↓" class="arrow-icon"></a>
+                <div class="submenu">
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Добавить сферу</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Управление сферами</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="menu-divider">
+<div class="menu-item-dropdown">
+                <a href="#" class="menu-item">
+                    <span class="menu-text">Мои наборы с контентом</span>
+                    <img src="images/arrow-icon.svg" alt="↓" class="arrow-icon"></a>
+                <div class="submenu">
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Создать новый набор</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Управление наборами</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="menu-divider">
+<a href="#" class="menu-item">
+                <span class="menu-text">100% Ai автопостинг</span>
+                <img src="images/arrow-right-icon.svg" alt="→" class="arrow-icon"></a>
+            <hr class="menu-divider">
+<div class="menu-item-dropdown active">
+                <a href="#" class="menu-item">
+                    <span class="menu-text">Доп. возможности</span>
+                    <img src="images/arrow-icon.svg" alt="↓" class="arrow-icon" style="transform: rotate(180deg);"></a>
+                <div class="submenu active">
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Аналитика</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Настройки</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">Помощь</span>
+                    </a>
+                    <a href="#" class="submenu-item">
+                        <span class="bullet">•</span>
+                        <span class="submenu-text">О сервисе</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="menu-divider">
+</div>
+
+        <div class="data-update menu-interactive">
+            <div class="update-header">
+                <img src="images/refresh-icon-1.svg" alt="Обновить" class="refresh-icon"><span class="update-title">Дата обновления контента из источников:</span>
+            </div>
+            <p class="update-message">
+                У вас еще нет наборов с источниками контента. 
+                <span class="highlight">Нажмите тут</span> чтобы перейти к настройке.
+            </p>
+        </div>
+    </div></div>
+
+    <div class="content-wrapper">
+        <header><div class="header-container">
+                <!-- Карточка "Мои сферы деятельности" -->
+                <div class="header-card active">
+                    <div class="card-title">Мои сферы деятельности</div>
+                    <div class="card-value">2</div>
+                </div>
+                
+                <!-- Карточка "Мои подключенные соц.сети" -->
+                <div class="header-card">
+                    <div class="card-title">Мои подключенные соц.сети</div>
+                    <div class="card-value">0</div>
+                </div>
+                
+                <!-- Карточка "Мои источники контента" -->
+                <div class="header-card">
+                    <div class="card-title">Мои источники контента</div>
+                    <div class="card-value">0</div>
+                </div>
+                
+                <!-- Карточка "Все созданные контент планы" -->
+                <div class="header-card">
+                    <div class="card-title">Все созданные контент планы</div>
+                    <div class="card-value">0</div>
+                </div>
+                
+                <!-- Карточка "Все мои созданные посты" -->
+                <div class="header-card">
+                    <div class="card-title">Все мои созданные посты</div>
+                    <div class="card-value">0</div>
+                </div>
+                
+                <!-- Карточка "Все опубликованные посты" -->
+                <div class="header-card">
+                    <div class="card-title">Все опубликованные посты</div>
+                    <div class="card-value">0</div>
+                </div>
+            </div>
+        </header><main class="content"><div class="main-container">
+                <div class="main-row">
+                    <!-- Левый блок - AutoSMM в режиме ОБТ -->
+                    <section class="info-block"><h2 class="info-block-title">
+<span>Auto</span>SMM<br>в режиме ОБТ</h2>
+                        <p class="info-block-subtitle">Узнайте на видео за 10 мнут,<br>как автоматизировать СММ на 100%</p>
+                        
+                        <div class="info-features">
+                            <div class="info-feature">
+                                <span class="info-feature-value">24/7</span>
+                                <span class="info-feature-label">Поддержка</span>
+                            </div>
+                            
+                            <div class="info-feature">
+                                <span class="info-feature-value">100%</span>
+                                <span class="info-feature-label">СММ автоматизации</span>
+                            </div>
+                            
+                            <div class="info-feature">
+                                <span class="infinity-icon">∞</span>
+                                <span class="info-feature-label">Бесплатно</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-buttons">
+                            <button class="support-button">Написать в тех.поддержку</button>
+                            <button class="play-button">
+                                <img src="images/play-icon.svg" alt="Воспроизвести"></button>
+                        </div>
+                        
+                        <img src="images/robot-image.png" alt="ИИ робот" class="robot-image"></section><!-- Правый блок - Этапы начала работы --><section class="steps-block"><section class="steps-block">
+                        <h2 class="steps-title">Этапы начала работы<br>с ИИ АвтоСММ на 100%</h2>
+                        
+                        <a href="/profile-setup" class="step-item">
+                            <div class="step-number">01</div>
+                            <div class="step-text">Настройте профиль АвтоСММ - подключите свои социальные сети</div>
+                        </a>
+                        
+                        <a href="/create-spheres" class="step-item">
+                            <div class="step-number">02</div>
+                            <div class="step-text">Создайте персональные сферы деятельности</div>
+                        </a>
+                        
+                        <a href="/ai-posting-setup" class="step-item">
+                            <div class="step-number">03</div>
+                            <div class="step-text">Настройте источники и параметры AI автопостинга</div>
+                        </a>
+                        
+                        <a href="/launch-autoposting" class="step-item">
+                            <div class="step-number">04</div>
+                            <div class="step-text">Запустите AI автопостинг</div>
+                        </a>
+                        
+                        <a href="/content-plans" class="step-item">
+                            <div class="step-number">05</div>
+                            <div class="step-text">Вайб СММ - Генерировать контент планы</div>
+                        </a>
+                        
+                        <a href="/create-posts" class="step-item">
+                            <div class="step-number">06</div>
+                            <div class="step-text">Вайб СММ - создавать посты в пару кликов с помощью AI АвтоСММ</div>
+                        </a>
+                    </section></section>
+</div>
+                
+                <!-- Секция инструкций -->
+                <section class="instructions-section"><h2 class="instructions-title">Изучите инструкции для быстрого освоения AI контент-маркетинга и автоматизации СММ в личном кабинете</h2>
+                    
+                    <div class="instructions-grid">
+                        <!-- Карточка 1 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-ceo.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Привет, давайте познакомимся!</div>
+                                    <div class="user-title">Владимир Дорецкий CEO: AutoSMM.ru</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Это интересно</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Кто мы, и почему в АвтоСММ все функции бесплатные для первых пользователей. И какие функции будут еще доступны в ближайшем обновлении для личного кабинета АвтоСММ...
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="1" data-tooltip="Поставить лайк">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">128</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="1" data-tooltip="Перейти к комментариям">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">32</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 2 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user1.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Настройте профиль АвтоСММ и подключите свои социальные сети</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Инструкция</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Инструкция как подключить за пару кликов группы ВКонтакте, Telegram и Яндекс Дзен для автопостинга контента с AI AutoSMM.ru
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="2" data-tooltip="Поставить лайк">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">86</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="2" data-tooltip="Перейти к комментариям">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">15</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 3 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user2.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Создайте персональные сферы деятельности для разных блогов</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Инструкция</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Сферы деятельности нужны для авто-генерации контента с помощью ИИ под любой бизнес нужный вам. Узнайте как их создать правильно.
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="3">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">124</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="3">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">37</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 4 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user3.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Настройте источники и параметры Ai автопостинга для соц.сетей</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Инструкция</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Как настроить АвтоСММ 24/7 собирать новый контент для постов из TG каналов и RSS, чтобы автоматически создавать новые посты для ваших сфер деятельности
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="4">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">92</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="4">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">24</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 5 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user6.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Как работает 100% Ai автопостинг для соц.сетей (ВК, ТГ, Дзен)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">100% АвтоСММ</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Ai AutoSMM заменяет целую SMM‑команду — генерирует, персонализирует и публикует контент во все российские соцсети 24/7
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="5">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">216</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="5">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">53</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 6 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user5.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Как генерировать контент планы в 1 клик</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Вайб СММ</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Просто опишите свой бизнес, или чем вы занимаетесь и получите профессиональный контент план на 7 дней бесплатно за 1 клик!
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="6">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">178</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="6">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">42</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 7 -->
+                        <div class="instruction-card">
+                            <div class="card-header">
+                                <img src="images/avatar-user4.png" alt="Аватар" class="user-avatar"><div class="user-info">
+                                    <div class="card-title">Как создавать посты за 1 клик с AI АвтоСММ</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-tags">
+                                <div class="tag">
+                                    <span class="tag-text">Новое</span>
+                                </div>
+                                <div class="tag">
+                                    <span class="tag-text">Вайб СММ</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-content">
+                                Для тех кто еще не купил софт, обзор программы (краткий)
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-date">12.12.2012</div>
+                                <div class="card-stats">
+                                    <div class="card-stat like-stat" data-card="7">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        <span class="stat-count">154</span>
+                                    </div>
+                                    <div class="card-stat comment-stat" data-card="7">
+                                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                        </svg>
+                                        <span class="stat-count">38</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="read-more">Подробнее...</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка 8 - Призыв к действию -->
+                        <div class="instruction-card cta-card">
+                            <div class="card-content">
+                                Мы очень ценим вашу обратную связь в период открытого бета-тестирования. Сообщайте о любых ошибках, пожеланиях, идеях —
+                                мы на связи!
+                            </div>
+                            <button class="cta-button">
+                                <span class="cta-button-text">Написать</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+</div>
+        </main>
+</div>
+
+    <link rel="stylesheet" href="css/modal/modal.css">
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/card-interactions.js"></script>
+    <script src="js/notification-system.js"></script>
+    <script src="js/enhanced-source-modal.js"></script>
+    <script src="js/ai-source-suggestions-modal.js"></script>
+    
+    <!-- Подключаем модуль Аналитики -->
+    <script src="js/analytics-dashboard.js"></script>
+    
+    <!-- Инициализация системы -->
+    <script>
+        // Инициализируем все основные компоненты после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем обработчики карточек
+            if (typeof initializeCardInteractions === 'function') {
+                initializeCardInteractions();
+            }
+            
+            // Инициализируем аналитику
+            if (typeof initializeAnalyticsDashboard === 'function') {
+                initializeAnalyticsDashboard();
+            }
+            
+            // Инициализируем модальные окна источников
+            if (typeof EnhancedSourceModal !== 'undefined') {
+                window.enhancedSourceModal = new EnhancedSourceModal();
+            }
+            
+            if (typeof AiSourceSuggestionsModal !== 'undefined') {
+                window.aiSourceModal = new AiSourceSuggestionsModal();
+            }
+            
+            // Функция показа уведомлений (глобальная)
+            if (!window.showNotification) {
+                window.showNotification = function(message, type = 'info') {
+                    console.log(`[${type.toUpperCase()}] ${message}`);
+                    
+                    // Создаем визуальное уведомление
+                    const notification = document.createElement('div');
+                    notification.className = `global-notification ${type}`;
+                    notification.innerHTML = `
+                        <div class="notification-content">
+                            <div class="notification-icon">
+                                ${type === 'success' ? '✅' : type === 'error' ? '❌' : type === 'warning' ? '⚠️' : 'ℹ️'}
+                            </div>
+                            <div class="notification-message">${message}</div>
+                            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                        </div>
+                    `;
+                    
+                    // Добавляем стили если их нет
+                    if (!document.getElementById('globalNotificationStyles')) {
+                        const styles = document.createElement('style');
+                        styles.id = 'globalNotificationStyles';
+                        styles.textContent = `
+                            .global-notification {
+                                position: fixed;
+                                top: 20px;
+                                right: 20px;
+                                z-index: 10000;
+                                max-width: 400px;
+                                animation: slideInRight 0.5s ease-out;
+                            }
+                            
+                            .global-notification.success .notification-content {
+                                background: linear-gradient(135deg, #10b981, #059669);
+                                color: white;
+                            }
+                            
+                            .global-notification.error .notification-content {
+                                background: linear-gradient(135deg, #ef4444, #dc2626);
+                                color: white;
+                            }
+                            
+                            .global-notification.warning .notification-content {
+                                background: linear-gradient(135deg, #f59e0b, #d97706);
+                                color: white;
+                            }
+                            
+                            .global-notification.info .notification-content {
+                                background: linear-gradient(135deg, #3b82f6, #2563eb);
+                                color: white;
+                            }
+                            
+                            .notification-content {
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 16px 20px;
+                                border-radius: 12px;
+                                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                                backdrop-filter: blur(10px);
+                            }
+                            
+                            .notification-icon {
+                                font-size: 20px;
+                                flex-shrink: 0;
+                            }
+                            
+                            .notification-message {
+                                flex: 1;
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                            
+                            .notification-close {
+                                background: rgba(255, 255, 255, 0.2);
+                                border: none;
+                                color: white;
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 14px;
+                                transition: background 0.2s ease;
+                            }
+                            
+                            .notification-close:hover {
+                                background: rgba(255, 255, 255, 0.3);
+                            }
+                            
+                            @keyframes slideInRight {
+                                from { transform: translateX(100%); opacity: 0; }
+                                to { transform: translateX(0); opacity: 1; }
+                            }
+                            
+                            @media (max-width: 768px) {
+                                .global-notification {
+                                    top: 10px;
+                                    right: 10px;
+                                    left: 10px;
+                                    max-width: none;
+                                }
+                            }
+                        `;
+                        document.head.appendChild(styles);
+                    }
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Автоматически убираем через 5 секунд
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.style.animation = 'slideInRight 0.5s ease-out reverse';
+                            setTimeout(() => notification.remove(), 500);
+                        }
+                    }, 5000);
+                };
+            }
+            
+            console.log('AutoSMM 2.0 веб панель полностью инициализирована');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AutoSMM - Тестирование модального окна</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sidebar-menu.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main-content.css">
+<link rel="stylesheet" href="css/button-effects.css">
+<link rel="stylesheet" href="css/enhanced-button-effects.css">
+<link rel="stylesheet" href="css/tooltips.css">
+<link rel="stylesheet" href="css/card-tooltips.css">
+<link rel="stylesheet" href="css/construction-styles.css">
+<link rel="stylesheet" href="css/liquid-glass.css">
+<link rel="stylesheet" href="css/spheres-page.css">
+<link rel="stylesheet" href="css/edit-sphere-modal.css">
+<link rel="stylesheet" href="css/instructions-section.css">
+<link rel="stylesheet" href="css/force-left-align.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Уведомление о тестировании -->
+    <div id="testNotification" style="
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #007AFF 0%, rgba(0, 122, 255, 0.8) 100%);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 24px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 122, 255, 0.3);
+        z-index: 10001;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        font-weight: 600;
+        animation: slideDown 0.5s ease;
+    ">
+        🧪 Режим тестирования: модальное окно откроется автоматически через 3 секунды
+    </div>
+
+    <div class="content-wrapper">
+        <!-- Боковое меню -->
+        <nav class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Меню навигации -->
+            <div class="nav-menu">
+                <!-- Главная -->
+                <div class="icon-container tooltip-trigger" data-page="dashboard" data-tooltip="Главная">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </div>
+
+                <!-- Портфель (Сферы деятельности) -->
+                <div class="icon-container tooltip-trigger active" data-page="manageSpheres" data-tooltip="Мои сферы деятельности">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
+                    </svg>
+                </div>
+
+                <!-- Другие пункты меню -->
+                <div class="icon-container tooltip-trigger" data-page="createPost" data-tooltip="Создать пост за 1 клик">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Основной контент -->
+        <main class="content">
+            <div class="main-container">
+                <!-- Шапка статистики -->
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <h3>Мои сферы деятельности</h3>
+                        <span class="stat-number">3</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Мои подключенные</h3>
+                        <span class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Мои источники контента</h3>
+                        <span class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Все созданные контент планы</h3>
+                        <span class="stat-number">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Все мои созданные посты</h3>
+                        <span class="stat-number">0</span>
+                    </div>
+                </div>
+
+                <!-- Контейнер для динамического контента -->
+                <div class="page-container">
+                    <!-- Страница сфер деятельности -->
+                    <div class="content-page spheres-page">
+                        <nav class="breadcrumbs">
+                            <ol class="breadcrumb-list">
+                                <li class="breadcrumb-item"><a href="#" onclick="window.menuHandler.navigateToHome()">Главная</a></li>
+                                <li class="breadcrumb-item active">Сферы деятельности</li>
+                            </ol>
+                        </nav>
+                        
+                        <div class="page-header">
+                            <div class="page-header-content">
+                                <h1 class="page-title">Мои сферы деятельности для AI автопостинга</h1>
+                                <p class="page-subtitle">Настройте бренды и тематики для персонализированной генерации контента с помощью ИИ</p>
+                            </div>
+                            <button class="btn-primary add-sphere-btn" onclick="toggleAddSphereForm()">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                Добавить сферу
+                            </button>
+                        </div>
+
+                        <!-- Список существующих сфер -->
+                        <div class="spheres-grid" id="spheresGrid">
+                            <!-- Сфера 1 -->
+                            <div class="sphere-card">
+                                <div class="sphere-card-header">
+                                    <div class="sphere-icon">
+                                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sphere-actions">
+                                        <button class="action-btn edit-btn" onclick="editSphere(1)" id="testEditButton">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteSphere(1)">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="sphere-content">
+                                    <h3 class="sphere-name">IT-консалтинг</h3>
+                                    <p class="brand-name">TechSolutions Pro</p>
+                                    <p class="sphere-description">Консультации по цифровой трансформации и автоматизации бизнес-процессов для крупных компаний</p>
+                                    
+                                    <div class="sphere-tags">
+                                        <span class="tag">Профессиональный тон</span>
+                                        <span class="tag">B2B</span>
+                                    </div>
+                                    
+                                    <div class="sphere-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">247</span>
+                                            <span class="stat-label">Постов создано</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">89%</span>
+                                            <span class="stat-label">Точность ИИ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Сфера 2 -->
+                            <div class="sphere-card">
+                                <div class="sphere-card-header">
+                                    <div class="sphere-icon">
+                                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sphere-actions">
+                                        <button class="action-btn edit-btn" onclick="editSphere(2)">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteSphere(2)">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="sphere-content">
+                                    <h3 class="sphere-name">E-commerce</h3>
+                                    <p class="brand-name">ShopStyle</p>
+                                    <p class="sphere-description">Интернет-магазин модной одежды и аксессуаров для молодежной аудитории</p>
+                                    
+                                    <div class="sphere-tags">
+                                        <span class="tag">Дружелюбный тон</span>
+                                        <span class="tag">B2C</span>
+                                    </div>
+                                    
+                                    <div class="sphere-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">156</span>
+                                            <span class="stat-label">Постов создано</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">92%</span>
+                                            <span class="stat-label">Точность ИИ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Сфера 3 -->
+                            <div class="sphere-card">
+                                <div class="sphere-card-header">
+                                    <div class="sphere-icon">
+                                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sphere-actions">
+                                        <button class="action-btn edit-btn" onclick="editSphere(3)">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteSphere(3)">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="sphere-content">
+                                    <h3 class="sphere-name">Образование</h3>
+                                    <p class="brand-name">EduMaster</p>
+                                    <p class="sphere-description">Онлайн-курсы и тренинги по профессиональному развитию для специалистов</p>
+                                    
+                                    <div class="sphere-tags">
+                                        <span class="tag">Экспертный тон</span>
+                                        <span class="tag">B2B/B2C</span>
+                                    </div>
+                                    
+                                    <div class="sphere-stats">
+                                        <div class="stat">
+                                            <span class="stat-number">324</span>
+                                            <span class="stat-label">Постов создано</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-number">95%</span>
+                                            <span class="stat-label">Точность ИИ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Включаем все скрипты -->
+    <script src="templates/page-templates.js"></script>
+    <script src="js/content-manager.js"></script>
+    <script src="js/menu-handler.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/tooltip-handler.js"></script>
+
+    <script>
+        // Функции для управления сферами деятельности
+        function editSphere(id) {
+            console.log('Редактирование сферы ID:', id);
+            showEditSphereModal(id);
+        }
+
+        function deleteSphere(id) {
+            if (confirm('Вы уверены, что хотите удалить эту сферу деятельности?')) {
+                showNotification('Сфера успешно удалена', 'success');
+            }
+        }
+
+        function toggleAddSphereForm() {
+            showNotification('Функция добавления сферы в разработке', 'info');
+        }
+
+        function getSphereData(id) {
+            const spheres = {
+                1: {
+                    id: 1,
+                    name: 'IT-консалтинг',
+                    brand: 'TechSolutions Pro',
+                    description: 'Консультации по цифровой трансформации и автоматизации бизнес-процессов для крупных компаний',
+                    audience: 'IT-директора, предприниматели',
+                    tone: 'professional',
+                    keywords: 'консалтинг, цифровизация, автоматизация'
+                },
+                2: {
+                    id: 2,
+                    name: 'E-commerce',
+                    brand: 'ShopStyle',
+                    description: 'Интернет-магазин модной одежды и аксессуаров для молодежной аудитории',
+                    audience: 'Молодежь 18-35 лет',
+                    tone: 'friendly',
+                    keywords: 'мода, одежда, стиль, аксессуары'
+                },
+                3: {
+                    id: 3,
+                    name: 'Образование',
+                    brand: 'EduMaster',
+                    description: 'Онлайн-курсы и тренинги по профессиональному развитию для специалистов',
+                    audience: 'Специалисты и руководители',
+                    tone: 'expert',
+                    keywords: 'обучение, курсы, развитие, навыки'
+                }
+            };
+            return spheres[id] || spheres[1];
+        }
+
+        function showEditSphereModal(id) {
+            const sphereData = getSphereData(id);
+            const modal = createEditSphereModal(sphereData);
+            document.body.appendChild(modal);
+            
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function createEditSphereModal(sphereData) {
+            const modal = document.createElement('div');
+            modal.className = 'liquid-modal-overlay';
+            modal.innerHTML = \`
+                <div class="liquid-modal-container">
+                    <div class="liquid-modal-header">
+                        <h2 class="modal-title">Редактировать сферу деятельности</h2>
+                        <button class="modal-close-btn" onclick="closeEditSphereModal()">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="liquid-modal-content">
+                        <form class="edit-sphere-form" onsubmit="saveEditedSphere(event, \${sphereData.id})">
+                            <div class="form-section">
+                                <h3 class="section-title">Основная информация</h3>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editSphereName">Название сферы</label>
+                                        <input type="text" 
+                                               id="editSphereName" 
+                                               class="liquid-input" 
+                                               value="\${sphereData.name}" 
+                                               placeholder="Например: IT-консалтинг" 
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editBrandName">Название бренда</label>
+                                        <input type="text" 
+                                               id="editBrandName" 
+                                               class="liquid-input" 
+                                               value="\${sphereData.brand}" 
+                                               placeholder="Например: TechSolutions Pro" 
+                                               required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editSphereDescription">Описание сферы</label>
+                                    <textarea id="editSphereDescription" 
+                                              class="liquid-input" 
+                                              placeholder="Краткое описание вашей деятельности для лучшего понимания ИИ..."
+                                              rows="4">\${sphereData.description}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3 class="section-title">Дополнительные настройки</h3>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editTargetAudience">Целевая аудитория</label>
+                                        <input type="text" 
+                                               id="editTargetAudience" 
+                                               class="liquid-input" 
+                                               value="\${sphereData.audience}"
+                                               placeholder="Например: IT-директора, предприниматели">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editContentTone">Тон общения</label>
+                                        <select id="editContentTone" class="liquid-input">
+                                            <option value="professional" \${sphereData.tone === 'professional' ? 'selected' : ''}>Профессиональный</option>
+                                            <option value="friendly" \${sphereData.tone === 'friendly' ? 'selected' : ''}>Дружелюбный</option>
+                                            <option value="casual" \${sphereData.tone === 'casual' ? 'selected' : ''}>Неформальный</option>
+                                            <option value="expert" \${sphereData.tone === 'expert' ? 'selected' : ''}>Экспертный</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editKeywords">Ключевые слова</label>
+                                    <input type="text" 
+                                           id="editKeywords" 
+                                           class="liquid-input" 
+                                           value="\${sphereData.keywords}"
+                                           placeholder="Через запятую: консалтинг, цифровизация, автоматизация">
+                                </div>
+                            </div>
+
+                            <div class="modal-actions">
+                                <button type="button" 
+                                        class="liquid-btn-secondary help-btn" 
+                                        onclick="showSphereHelp()">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Мне нужна помощь
+                                </button>
+                                <div class="primary-actions">
+                                    <button type="button" 
+                                            class="liquid-btn-secondary" 
+                                            onclick="closeEditSphereModal()">
+                                        Отмена
+                                    </button>
+                                    <button type="submit" 
+                                            class="liquid-btn">
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Сохранить изменения
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            \`;
+            
+            return modal;
+        }
+
+        function closeEditSphereModal() {
+            const modal = document.querySelector('.liquid-modal-overlay');
+            if (modal) {
+                modal.classList.add('hiding');
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        document.body.removeChild(modal);
+                    }
+                }, 300);
+            }
+        }
+
+        function saveEditedSphere(event, sphereId) {
+            event.preventDefault();
+            
+            const formData = {
+                id: sphereId,
+                name: document.getElementById('editSphereName').value,
+                brand: document.getElementById('editBrandName').value,
+                description: document.getElementById('editSphereDescription').value,
+                audience: document.getElementById('editTargetAudience').value,
+                tone: document.getElementById('editContentTone').value,
+                keywords: document.getElementById('editKeywords').value
+            };
+            
+            showNotification('Сфера "' + formData.name + '" успешно обновлена!', 'success');
+            closeEditSphereModal();
+            console.log('Сохраненные данные:', formData);
+        }
+
+        function showSphereHelp() {
+            const helpModal = createHelpModal();
+            document.body.appendChild(helpModal);
+            setTimeout(() => {
+                helpModal.classList.add('show');
+            }, 10);
+        }
+
+        function createHelpModal() {
+            const modal = document.createElement('div');
+            modal.className = 'liquid-modal-overlay help-modal';
+            modal.innerHTML = \`
+                <div class="liquid-modal-container help-container">
+                    <div class="liquid-modal-header">
+                        <h2 class="modal-title">Справка по настройке сфер деятельности</h2>
+                        <button class="modal-close-btn" onclick="closeHelpModal()">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="liquid-modal-content help-content">
+                        <div class="help-section">
+                            <div class="help-icon">📝</div>
+                            <h3>Название сферы</h3>
+                            <p>Укажите основную область вашей деятельности. Это поможет ИИ лучше понимать контекст при создании постов.</p>
+                            <div class="help-examples">
+                                <strong>Примеры:</strong> IT-консалтинг, Маркетинг, E-commerce, Образование, Здоровье
+                            </div>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-icon">🏢</div>
+                            <h3>Название бренда</h3>
+                            <p>Имя вашей компании или личного бренда, которое будет использоваться в постах и упоминаниях.</p>
+                            <div class="help-examples">
+                                <strong>Примеры:</strong> TechSolutions Pro, МойМаркетинг, ЗдоровыйОбраз
+                            </div>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-icon">📋</div>
+                            <h3>Описание сферы</h3>
+                            <p>Детальное описание вашей деятельности. ИИ использует эту информацию для создания релевантного контента.</p>
+                            <div class="help-examples">
+                                <strong>Совет:</strong> Указывайте целевую аудиторию, основные услуги и особенности
+                            </div>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-icon">🎯</div>
+                            <h3>Целевая аудитория</h3>
+                            <p>Опишите вашу основную аудиторию. Это влияет на стиль и содержание генерируемых постов.</p>
+                            <div class="help-examples">
+                                <strong>Примеры:</strong> Предприниматели 25-45 лет, IT-специалисты, Молодые мамы
+                            </div>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-icon">💬</div>
+                            <h3>Тон общения</h3>
+                            <ul>
+                                <li><strong>Профессиональный</strong> — для B2B и серьезных тем</li>
+                                <li><strong>Дружелюбный</strong> — для широкой аудитории</li>
+                                <li><strong>Неформальный</strong> — для молодежи и развлекательного контента</li>
+                                <li><strong>Экспертный</strong> — для образовательного контента</li>
+                            </ul>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-icon">🔍</div>
+                            <h3>Ключевые слова</h3>
+                            <p>Термины и фразы, связанные с вашей деятельностью. Помогают ИИ использовать правильную терминологию.</p>
+                            <div class="help-examples">
+                                <strong>Совет:</strong> Используйте 5-10 ключевых слов через запятую
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="liquid-btn" onclick="closeHelpModal()">Понятно, спасибо!</button>
+                    </div>
+                </div>
+            \`;
+            
+            return modal;
+        }
+
+        function closeHelpModal() {
+            const modal = document.querySelector('.help-modal');
+            if (modal) {
+                modal.classList.add('hiding');
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        document.body.removeChild(modal);
+                    }
+                }, 300);
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-' + type;
+            notification.textContent = message;
+            
+            notification.style.cssText = \`
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: \${type === 'success' ? '#34C759' : type === 'error' ? '#FF3B30' : '#007AFF'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 16px;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            \`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 400);
+            }, 3000);
+        }
+
+        // Автоматическое тестирование
+        setTimeout(() => {
+            // Скрываем уведомление о тестировании
+            const testNotification = document.getElementById('testNotification');
+            if (testNotification) {
+                testNotification.style.animation = 'slideUp 0.5s ease';
+                setTimeout(() => {
+                    testNotification.remove();
+                }, 500);
+            }
+            
+            // Открываем модальное окно
+            console.log('🧪 Автоматическое тестирование: открываем модальное окно редактирования');
+            document.getElementById('testEditButton').click();
+        }, 3000);
+    </script>
+
+    <style>
+        @keyframes slideDown {
+            from {
+                transform: translate(-50%, -100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-50%, -100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>

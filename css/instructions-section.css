@@ -1,0 +1,494 @@
+/* Секция инструкций */
+.instructions-section {
+    width: 100%;
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
+.instructions-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.instructions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+/* Карточка инструкции */
+.instruction-card {
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    border: 1px solid var(--white-color);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+}
+
+.instruction-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок карточки */
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    text-align: left;
+}
+
+.user-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.25em;
+    color: var(--gray-color);
+    text-align: left;
+}
+
+/* Теги карточки */
+.card-tags {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tag {
+    border: 1px solid var(--primary-color);
+    border-radius: 16px;
+    padding: 0 16px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25em;
+    color: var(--primary-color);
+}
+
+/* Контент карточки */
+.card-content {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    width: 100%;
+    text-align: left;
+}
+
+/* Дата и футер */
+.card-date {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.25em;
+    color: var(--gray-color);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.card-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: var(--gray-color);
+}
+
+.stat-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+.card-stat:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.card-stat:hover .stat-icon {
+    opacity: 1;
+}
+
+.user-avatars {
+    display: flex;
+    gap: -8px;
+}
+
+.user-avatars .user-avatar {
+    width: 24px;
+    height: 24px;
+    margin-left: -8px;
+    border: 2px solid white;
+}
+
+.user-avatars .user-avatar:first-child {
+    margin-left: 0;
+}
+
+.read-more {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25em;
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Специальная карточка с призывом к действию */
+.cta-card {
+    background: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 203px;
+}
+
+.cta-card .card-content {
+    color: var(--white-color);
+    font-size: 14px;
+    margin-bottom: auto;
+}
+
+.cta-button {
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 40px;
+    padding: 16px 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.cta-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+.cta-button-text {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1em;
+}
+
+/* Медиа-запросы для адаптивности */
+@media screen and (max-width: 1200px) {
+    .instructions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .instructions-section {
+        padding: 30px 16px;
+    }
+    
+    .instructions-title {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .instructions-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .instruction-card {
+        padding: 14px;
+    }
+    
+    .card-title {
+        font-size: 13px;
+    }
+    
+    .card-content {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .instructions-section {
+        padding: 20px 12px;
+    }
+    
+    .instructions-title {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .instruction-card {
+        padding: 12px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .card-title {
+        font-size: 12px;
+    }
+    
+    .card-content {
+        font-size: 10px;
+    }
+    
+    .cta-card .card-content {
+        font-size: 12px;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        height: 40px;
+    }
+    
+    .cta-button-text {
+        font-size: 12px;
+    }
+}
+
+/* Анимации для карточек */
+.instruction-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.instruction-card:nth-child(1) { animation-delay: 0.1s; }
+.instruction-card:nth-child(2) { animation-delay: 0.2s; }
+.instruction-card:nth-child(3) { animation-delay: 0.3s; }
+.instruction-card:nth-child(4) { animation-delay: 0.4s; }
+.instruction-card:nth-child(5) { animation-delay: 0.5s; }
+.instruction-card:nth-child(6) { animation-delay: 0.6s; }
+.instruction-card:nth-child(7) { animation-delay: 0.7s; }
+.instruction-card:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}/* Стили для лайкнутых карточек */
+.card-stat.liked {
+    color: #FF4D4D;
+}
+
+.card-stat.liked .stat-icon {
+    fill: #FF4D4D;
+    stroke: #FF4D4D;
+}
+
+/* Стили для модального окна VK авторизации */
+.vk-auth-modal .modal-container {
+    max-width: 500px;
+}
+
+.auth-info {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.auth-icon {
+    margin-bottom: 16px;
+}
+
+.auth-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--black-color);
+}
+
+.auth-info p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--gray-color);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.auth-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--black-color);
+    text-align: left;
+}
+
+.vk-auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #4C75A3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 12px;
+}
+
+.vk-auth-button:hover {
+    background: #3d5f8a;
+}
+
+.vk-auth-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.cancel-button {
+    background: none;
+    border: 1px solid var(--gray-color);
+    color: var(--gray-color);
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+    border-color: var(--black-color);
+    color: var(--black-color);
+}
+
+/* Медиа-запросы для адаптивности авторизации */
+@media screen and (max-width: 768px) {
+    .vk-auth-modal .modal-container {
+        max-width: 90%;
+    }
+    
+    .auth-benefits {
+        gap: 10px;
+    }
+    
+    .benefit-item {
+        font-size: 13px;
+    }
+    
+    .vk-auth-button, .cancel-button {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .auth-info h3 {
+        font-size: 16px;
+    }
+    
+    .auth-info p {
+        font-size: 13px;
+    }
+    
+    .benefit-item {
+        font-size: 12px;
+    }
+    
+    .vk-auth-button, .cancel-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .vk-auth-button {
+        margin-right: 0;
+        width: 100%;
+    }
+}

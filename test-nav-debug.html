@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Test Navigation Debug</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sidebar-menu.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main-content.css">
+<link rel="stylesheet" href="css/button-effects.css">
+<link rel="stylesheet" href="css/enhanced-button-effects.css">
+<link rel="stylesheet" href="css/tooltips.css">
+<link rel="stylesheet" href="css/card-tooltips.css">
+<link rel="stylesheet" href="css/construction-styles.css">
+<link rel="stylesheet" href="css/liquid-glass.css">
+<link rel="stylesheet" href="css/spheres-page.css">
+<link rel="stylesheet" href="css/instructions-section.css">
+<link rel="stylesheet" href="css/force-left-align.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h1>Отладка навигации</h1>
+        <div id="debugInfo" style="background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h3>Информация для отладки:</h3>
+            <div id="debugContent">Загрузка...</div>
+        </div>
+        
+        <button onclick="testNavigationToSpheres()" style="padding: 10px 20px; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer; margin: 5px;">
+            Тест: Переход к сферам
+        </button>
+        
+        <button onclick="testNavigationToCreatePost()" style="padding: 10px 20px; background: #34C759; color: white; border: none; border-radius: 8px; cursor: pointer; margin: 5px;">
+            Тест: Создание поста
+        </button>
+        
+        <div class="main-container" style="border: 2px solid #007AFF; padding: 20px; margin-top: 20px; min-height: 400px;">
+            <p>Здесь будет отображаться загруженный контент...</p>
+        </div>
+    </div>
+
+    <script src="templates/page-templates.js"></script>
+    <script src="js/content-manager.js"></script>
+    <script src="js/menu-handler.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/tooltip-handler.js"></script>
+
+    <script>
+        function updateDebugInfo() {
+            const debugDiv = document.getElementById('debugContent');
+            const info = [
+                `Время: ${new Date().toLocaleTimeString()}`,
+                `pageTemplates доступен: ${typeof pageTemplates !== 'undefined'}`,
+                `Количество шаблонов: ${typeof pageTemplates !== 'undefined' ? Object.keys(pageTemplates).length : 0}`,
+                `ContentManager доступен: ${typeof window.contentManager !== 'undefined'}`,
+                `TooltipHandler доступен: ${typeof window.tooltipHandler !== 'undefined'}`,
+                `Шаблон manageSpheres существует: ${typeof pageTemplates !== 'undefined' && pageTemplates.manageSpheres ? 'ДА' : 'НЕТ'}`,
+                `Шаблон createPost существует: ${typeof pageTemplates !== 'undefined' && pageTemplates.createPost ? 'ДА' : 'НЕТ'}`
+            ];
+            
+            if (typeof pageTemplates !== 'undefined') {
+                info.push(`Доступные шаблоны: ${Object.keys(pageTemplates).join(', ')}`);
+            }
+            
+            debugDiv.innerHTML = info.map(item => `<div>• ${item}</div>`).join('');
+        }
+
+        function testNavigationToSpheres() {
+            console.log('=== ТЕСТ НАВИГАЦИИ К СФЕРАМ ===');
+            updateDebugInfo();
+            
+            if (window.contentManager && typeof window.contentManager.showPage === 'function') {
+                console.log('Вызываем contentManager.showPage("manageSpheres")');
+                window.contentManager.showPage('manageSpheres', 'Сферы деятельности');
+            } else {
+                console.error('contentManager.showPage недоступен');
+                alert('Ошибка: ContentManager не инициализирован');
+            }
+        }
+
+        function testNavigationToCreatePost() {
+            console.log('=== ТЕСТ НАВИГАЦИИ К СОЗДАНИЮ ПОСТА ===');
+            updateDebugInfo();
+            
+            if (window.contentManager && typeof window.contentManager.showPage === 'function') {
+                console.log('Вызываем contentManager.showPage("createPost")');
+                window.contentManager.showPage('createPost', 'Создание поста');
+            } else {
+                console.error('contentManager.showPage недоступен');
+                alert('Ошибка: ContentManager не инициализирован');
+            }
+        }
+
+        // Обновляем информацию каждую секунду
+        setInterval(updateDebugInfo, 1000);
+        
+        // Начальное обновление
+        setTimeout(updateDebugInfo, 500);
+        
+        // Дополнительная проверка через 2 секунды
+        setTimeout(() => {
+            console.log('=== ФИНАЛЬНАЯ ПРОВЕРКА ===');
+            console.log('pageTemplates:', typeof pageTemplates);
+            console.log('window.contentManager:', typeof window.contentManager);
+            console.log('Доступные шаблоны:', typeof pageTemplates !== 'undefined' ? Object.keys(pageTemplates) : 'недоступно');
+            updateDebugInfo();
+        }, 2000);
+    </script>
+</body>
+</html>

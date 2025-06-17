@@ -1,0 +1,335 @@
+.sidebar-menu {
+    position: fixed;
+    left: 30px; /* Изменено с 80px на 30px (сдвиг влево на 50px) */
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu.open {
+    transform: translateX(0);
+}
+
+/* Адаптивность для меню */
+@media screen and (max-width: 1024px) {
+    .sidebar-menu {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-menu {
+        left: 10px; /* Соответственно уменьшено с 60px до 10px */
+        width: 240px;
+        padding: 16px;
+    }
+}
+
+/* Мобильная версия - меню на весь экран */
+@media screen and (max-width: 480px) {
+    .sidebar-menu {
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    .sidebar-menu.open {
+        transform: translateX(0);
+    }
+    
+    .logo-text {
+        font-size: 14px;
+    }
+    
+    .stat-title, .rec-title, .update-title, .update-message {
+        font-size: 12px;
+    }
+    
+    .stat-value, .rec-count {
+        font-size: 20px;
+    }
+    
+    .menu-text {
+        font-size: 14px;
+    }
+
+    .expand-button {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .sidebar-menu {
+        padding: 16px;
+    }
+    
+    .user-icon {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+    
+    .logo-text {
+        font-size: 12px;
+    }
+    
+    .stat-title, .rec-title, .update-title, .update-message {
+        font-size: 11px;
+    }
+    
+    .stat-value, .rec-count {
+        font-size: 18px;
+    }
+    
+    .menu-text {
+        font-size: 12px;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--black-color);
+}
+
+.expand-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.stat-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(15, 51, 239, 0.32);
+    background: linear-gradient(to top, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.stat-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--black-color);
+}
+
+.stat-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--black-color);
+}
+
+.recommendation-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--white-color);
+    background: linear-gradient(to top, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.rec-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rec-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--black-color);
+    max-width: 200px;
+}
+
+.rec-count {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--black-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    padding: 8px 0;
+}
+
+.menu-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 0;
+}
+
+.menu-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--primary-color);
+}
+
+.menu-text.gray {
+    color: var(--gray-color);
+}
+
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.data-update {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.update-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-icon {
+    color: var(--primary-color);
+}
+
+.update-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--black-color);
+}
+
+.update-message {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--gray-color);
+}
+
+.highlight {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Стили для выпадающего подменю */
+.menu-item-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+/* Стили активного пункта меню при открытом подменю */
+.menu-item-dropdown.active .menu-item {
+    background-color: #0F33EF;
+    border-radius: 8px;
+    padding: 8px !important;
+}
+
+.menu-item-dropdown.active .menu-text {
+    color: #FFFFFF;
+}
+
+.menu-item-dropdown.active .arrow-icon {
+    filter: brightness(0) invert(1);
+}
+
+.submenu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+    padding-left: 16px;
+}
+
+.submenu.active {
+    display: flex;
+}
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 4px 0;
+}
+
+.bullet {
+    font-size: 16px;
+    color: #666666;
+}
+
+.submenu-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #666666;
+}

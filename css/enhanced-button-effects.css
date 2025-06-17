@@ -1,0 +1,285 @@
+/* Улучшенные эффекты для кнопок в меню */
+
+/* Эффекты для иконок в боковом меню */
+.icon-container {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Создаем фон-градиент, который будет появляться при наведении */
+.icon-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 51, 239, 0.2) 0%, rgba(15, 51, 239, 0.1) 100%);
+    opacity: 0;
+    border-radius: 8px;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    transform: scale(0.8);
+    z-index: -1;
+}
+
+/* Эффект при наведении */
+.icon-container:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(15, 51, 239, 0.15);
+}
+
+.icon-container:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Эффект при клике */
+.icon-container:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(15, 51, 239, 0.1);
+}
+
+/* Эффект для изображений внутри иконок */
+.icon-container img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.icon-container:hover img {
+    transform: scale(1.15);
+}
+
+/* Специальный эффект для активной иконки */
+.icon-container.active {
+    overflow: visible;
+    animation: pulseActive 2s infinite alternate;
+}
+
+.icon-container.active::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: var(--white-color);
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: glowMarker 1.5s infinite alternate;
+}
+
+/* Анимация пульсации для активной иконки */
+@keyframes pulseActive {
+    0% {
+        box-shadow: 0 0 0 0 rgba(15, 51, 239, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(15, 51, 239, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(15, 51, 239, 0);
+    }
+}
+
+/* Анимация свечения для маркера активной иконки */
+@keyframes glowMarker {
+    from {
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+    }
+    to {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(15, 51, 239, 0.7);
+    }
+}
+
+/* Улучшенный эффект для иконки уведомлений */
+.notification-icon {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.notification-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
+    opacity: 0;
+    border-radius: 8px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0);
+    z-index: -1;
+}
+
+.notification-icon:hover {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(15, 51, 239, 0.2);
+}
+
+.notification-icon:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.notification-icon:active {
+    transform: scale(0.95);
+}
+
+.notification-icon img {
+    transition: transform 0.3s ease;
+}
+
+.notification-icon:hover img {
+    transform: scale(1.1);
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Анимация тряски для иконки уведомлений */
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    
+    30%, 50%, 70% {
+        transform: translate3d(-3px, 0, 0);
+    }
+    
+    40%, 60% {
+        transform: translate3d(3px, 0, 0);
+    }
+}
+
+/* Улучшенные эффекты для пунктов меню в боковом меню */
+.menu-item {
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.menu-item::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(15, 51, 239, 0.1) 0%, rgba(15, 51, 239, 0.03) 50%, transparent 100%);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.menu-item:hover {
+    padding-left: 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(15, 51, 239, 0.1);
+}
+
+.menu-item:hover::before {
+    left: 0;
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+}
+
+/* Анимация для текста пункта меню */
+.menu-text {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.menu-item:hover .menu-text {
+    color: var(--primary-color);
+    transform: scale(1.03);
+    font-weight: 700;
+}
+
+/* Анимация для стрелки в меню */
+.arrow-icon {
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover .arrow-icon {
+    transform: translateX(3px);
+}
+
+/* Улучшенные эффекты для подменю */
+.submenu-item {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.submenu-item::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(15, 51, 239, 0.05) 0%, rgba(15, 51, 239, 0.02) 50%, transparent 100%);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.submenu-item:hover {
+    padding-left: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.submenu-item:hover::before {
+    left: 0;
+}
+
+.submenu-item:hover .submenu-text {
+    color: var(--primary-color);
+}
+
+.submenu-item:hover .bullet {
+    color: var(--primary-color);
+}
+
+/* Эффект для меню при открытии подменю */
+.menu-item-dropdown.active .menu-item {
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(15, 51, 239, 0.8) 100%);
+    box-shadow: 0 4px 15px rgba(15, 51, 239, 0.3);
+    animation: expandMenu 0.3s ease-out forwards;
+}
+
+@keyframes expandMenu {
+    0% {
+        transform: scale(0.98);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Эффект появления подменю */
+.submenu.active {
+    animation: fadeInSubmenu 0.4s ease forwards;
+}
+
+@keyframes fadeInSubmenu {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,761 @@
+/* Стили для страницы аналитики автопостинга в стиле Apple iOS 26 "Liquid Glass" */
+
+/* Переменные для аналитики */
+:root {
+    --analytics-primary: #007AFF;
+    --analytics-secondary: #5856D6;
+    --analytics-success: #34C759;
+    --analytics-warning: #FF9500;
+    --analytics-error: #FF3B30;
+    --analytics-purple: #AF52DE;
+    --analytics-teal: #5AC8FA;
+    --analytics-indigo: #5856D6;
+    --analytics-green: #30D158;
+    --analytics-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --analytics-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --analytics-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --analytics-gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Основной контейнер аналитики */
+.analytics-dashboard-page {
+    padding: 0;
+    background: transparent;
+    min-height: 100vh;
+}
+
+/* Заголовок аналитики */
+.analytics-hero {
+    background: var(--analytics-gradient-1);
+    position: relative;
+    padding: 40px 32px;
+    border-radius: 32px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 60px rgba(102, 126, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.analytics-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="0.5" fill="rgba(255,255,255,0.15)"/></svg>');
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-10px, -10px) rotate(120deg); }
+    66% { transform: translate(10px, -5px) rotate(240deg); }
+}
+
+.analytics-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+.analytics-hero-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.analytics-hero-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.analytics-hero-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Сетка метрик */
+.analytics-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        transparent 100%);
+}
+
+.metric-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.metric-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.metric-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 16px;
+    color: white;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.metric-icon.posts { background: var(--analytics-gradient-2); }
+.metric-icon.engagement { background: var(--analytics-gradient-3); }
+.metric-icon.reach { background: var(--analytics-gradient-4); }
+.metric-icon.efficiency { background: var(--analytics-gradient-1); }
+
+.metric-trend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.metric-trend.up {
+    color: var(--analytics-success);
+    background: rgba(52, 199, 89, 0.15);
+}
+
+.metric-trend.down {
+    color: var(--analytics-error);
+    background: rgba(255, 59, 48, 0.15);
+}
+
+.metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--black-color);
+    margin: 0 0 8px 0;
+    background: linear-gradient(135deg, #333 0%, #111 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.metric-label {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0 0 16px 0;
+    font-weight: 500;
+}
+
+.metric-progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.metric-progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.metric-progress-bar.posts { background: var(--analytics-gradient-2); }
+.metric-progress-bar.engagement { background: var(--analytics-gradient-3); }
+.metric-progress-bar.reach { background: var(--analytics-gradient-4); }
+.metric-progress-bar.efficiency { background: var(--analytics-gradient-1); }
+
+.metric-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Графики и диаграммы */
+.analytics-charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.chart-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.chart-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin: 0;
+}
+
+.chart-period {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 4px;
+}
+
+.period-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.period-btn.active {
+    background: var(--analytics-primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+/* Макет графика */
+.chart-placeholder {
+    width: 100%;
+    height: 240px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(0, 122, 255, 0.1) 0%, 
+        rgba(88, 86, 214, 0.1) 50%,
+        rgba(175, 82, 222, 0.1) 100%);
+    opacity: 0.5;
+}
+
+/* Топ постов */
+.top-posts {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.top-posts-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.top-posts-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.top-posts-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin: 0;
+}
+
+.post-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.post-rank {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--analytics-primary);
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.post-info {
+    flex: 1;
+}
+
+.post-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black-color);
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+
+.post-stats {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+}
+
+.post-engagement {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--analytics-success);
+}
+
+/* Настройки отчетов */
+.analytics-settings {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.settings-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.settings-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.settings-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin: 0;
+}
+
+.settings-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black-color);
+    margin: 0 0 4px 0;
+}
+
+.setting-description {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.setting-toggle {
+    position: relative;
+    width: 48px;
+    height: 28px;
+    background: rgba(120, 120, 128, 0.16);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.setting-toggle.active {
+    background: var(--analytics-primary);
+    box-shadow: 0 0 16px rgba(0, 122, 255, 0.4);
+}
+
+.setting-toggle-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 11px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.setting-toggle.active .setting-toggle-handle {
+    transform: translateX(20px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+/* Кнопки действий */
+.analytics-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.analytics-btn {
+    padding: 16px 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    min-width: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.analytics-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.analytics-btn:hover::before {
+    left: 100%;
+}
+
+.analytics-btn-primary {
+    background: var(--analytics-gradient-1);
+    color: white;
+    box-shadow: 
+        0 8px 24px rgba(102, 126, 234, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.analytics-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(102, 126, 234, 0.35),
+        0 0 25px rgba(102, 126, 234, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.analytics-btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.analytics-btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.25);
+    color: rgba(0, 0, 0, 0.9);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 0 20px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+    .analytics-hero {
+        padding: 32px 24px;
+        margin-bottom: 24px;
+    }
+    
+    .analytics-hero-title {
+        font-size: 24px;
+    }
+    
+    .analytics-metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .analytics-charts {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .chart-container,
+    .top-posts,
+    .analytics-settings {
+        padding: 24px;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .analytics-hero {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+    
+    .analytics-hero-title {
+        font-size: 22px;
+    }
+    
+    .analytics-hero-subtitle {
+        font-size: 14px;
+    }
+    
+    .analytics-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .metric-card {
+        padding: 24px 20px;
+    }
+    
+    .metric-value {
+        font-size: 28px;
+    }
+    
+    .chart-container,
+    .top-posts,
+    .analytics-settings {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    
+    .chart-placeholder {
+        height: 200px;
+    }
+    
+    .analytics-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .analytics-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .post-item {
+        padding: 12px;
+    }
+    
+    .setting-item {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .analytics-hero {
+        padding: 20px 16px;
+        margin-bottom: 20px;
+    }
+    
+    .analytics-hero-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+    
+    .analytics-hero-title {
+        font-size: 20px;
+    }
+    
+    .chart-container,
+    .top-posts,
+    .analytics-settings {
+        padding: 16px;
+    }
+    
+    .metric-card {
+        padding: 20px 16px;
+    }
+}
+
+/* Высокая плотность пикселей */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .metric-card,
+    .chart-container,
+    .top-posts,
+    .analytics-settings,
+    .post-item,
+    .setting-item {
+        border-width: 0.5px;
+    }
+}

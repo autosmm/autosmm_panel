@@ -1,0 +1,102 @@
+/* Эффекты для кнопок-шагов */
+.step-item {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Эффект волны при клике */
+.step-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary-color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.step-item:after {
+    content: '→';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--primary-color);
+    opacity: 0;
+    margin-left: auto;
+    transition: all 0.3s ease;
+}
+
+/* Эффект при наведении */
+.step-item:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(15, 51, 239, 0.15);
+    transform: translateY(-2px);
+}
+
+.step-item:hover::before {
+    opacity: 1;
+}
+
+.step-item:hover::after {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* Эффект при клике */
+.step-item.clicked {
+    animation: pulse 0.3s ease-in-out;
+}
+
+.step-item:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(15, 51, 239, 0.1);
+}
+
+/* Эффекты для номера шага */
+.step-item:hover .step-number {
+    font-weight: 700;
+    transform: scale(1.1);
+    text-shadow: 0 0 8px rgba(15, 51, 239, 0.3);
+}
+
+/* Эффекты для текста шага */
+.step-item:hover .step-text {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Создаем эффект пульсации */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(15, 51, 239, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(15, 51, 239, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(15, 51, 239, 0);
+    }
+}
+
+/* Эффект свечения для шага */
+.step-item:nth-child(1) { animation-delay: 0.1s; }
+.step-item:nth-child(2) { animation-delay: 0.2s; }
+.step-item:nth-child(3) { animation-delay: 0.3s; }
+.step-item:nth-child(4) { animation-delay: 0.4s; }
+.step-item:nth-child(5) { animation-delay: 0.5s; }
+.step-item:nth-child(6) { animation-delay: 0.6s; }
+
+.step-item:hover {
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(15, 51, 239, 0.1), 0 0 10px rgba(15, 51, 239, 0.1);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(15, 51, 239, 0.2), 0 0 20px rgba(15, 51, 239, 0.2);
+    }
+}

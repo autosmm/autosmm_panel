@@ -1,0 +1,243 @@
+/* Подсказки для элементов карточек и шагов */
+
+/* Подсказки для кнопок в карточках */
+.card-footer .card-stat {
+    position: relative;
+}
+
+.card-footer .card-stat::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-footer .card-stat::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #2d2d2d transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-footer .card-stat:hover::after,
+.card-footer .card-stat:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Подсказки для кнопки "Подробнее" */
+.read-more {
+    position: relative;
+}
+
+.read-more::after {
+    content: "Открыть детальную информацию";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(15, 51, 239, 0.9) 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(15, 51, 239, 0.3);
+}
+
+.read-more::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: var(--primary-color) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover::after,
+.read-more:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Подсказки для шагов */
+.step-item {
+    position: relative;
+}
+
+.step-item::after {
+    content: "Кликните для перехода к этому этапу";
+    position: absolute;
+    left: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+}
+
+.step-item::before {
+    content: "";
+    position: absolute;
+    left: 115%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 6px 6px 6px 0;
+    border-color: transparent #16a34a transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover::after,
+.step-item:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(8px);
+}
+
+/* Подсказки для кнопок в информационном блоке */
+.support-button,
+.play-button {
+    position: relative;
+}
+
+.support-button::after {
+    content: "Написать в техническую поддержку";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.support-button::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #d97706 transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.play-button::after {
+    content: "Посмотреть обучающее видео";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(15, 51, 239, 0.9) 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(15, 51, 239, 0.3);
+}
+
+.play-button::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: var(--primary-color) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.support-button:hover::after,
+.support-button:hover::before,
+.play-button:hover::after,
+.play-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Адаптивность для мобильных устройств */
+@media screen and (max-width: 768px) {
+    .step-item::after {
+        left: 50%;
+        top: -60px;
+        transform: translateX(-50%);
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .step-item::before {
+        left: 50%;
+        top: -10px;
+        transform: translateX(-50%);
+        border-width: 0 5px 5px 5px;
+        border-color: transparent transparent #16a34a transparent;
+    }
+    
+    .step-item:hover::after,
+    .step-item:hover::before {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}

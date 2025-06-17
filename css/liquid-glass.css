@@ -1,0 +1,324 @@
+/* Apple iOS 26 Liquid Glass Design System */
+
+/* Глобальные переменные для Liquid Glass */
+:root {
+    /* Liquid Glass цветовая палитра */
+    --liquid-primary: #007AFF;
+    --liquid-secondary: #5856D6;
+    --liquid-success: #34C759;
+    --liquid-warning: #FF9500;
+    --liquid-error: #FF3B30;
+    
+    /* Стеклянные поверхности */
+    --glass-white: rgba(255, 255, 255, 0.15);
+    --glass-dark: rgba(0, 0, 0, 0.05);
+    --glass-blue: rgba(0, 122, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Размытие */
+    --blur-light: blur(10px);
+    --blur-medium: blur(20px);
+    --blur-heavy: blur(40px);
+    
+    /* Световые эффекты */
+    --glow-soft: 0 0 20px rgba(255, 255, 255, 0.3);
+    --glow-accent: 0 0 30px rgba(0, 122, 255, 0.4);
+    --specular-highlight: rgba(255, 255, 255, 0.8);
+    
+    /* Тени глубины */
+    --shadow-floating: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 16px 64px rgba(0, 0, 0, 0.15);
+    --shadow-modal: 0 24px 96px rgba(0, 0, 0, 0.2);
+}
+
+/* Базовый стеклянный материал */
+.liquid-glass {
+    background: var(--glass-white);
+    backdrop-filter: var(--blur-light);
+    -webkit-backdrop-filter: var(--blur-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        var(--shadow-floating),
+        inset 0 1px 0 var(--specular-highlight);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Интерактивное свечение при наведении */
+.liquid-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        var(--shadow-elevated),
+        var(--glow-soft),
+        inset 0 1px 0 var(--specular-highlight);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Активное состояние с внутренним свечением */
+.liquid-glass:active {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        var(--shadow-floating),
+        inset var(--glow-soft),
+        inset 0 1px 0 var(--specular-highlight);
+    transform: scale(0.98);
+}
+
+/* Плавающие панели */
+.liquid-panel {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.25) 0%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 
+        var(--shadow-floating),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Карточки в стиле Liquid Glass */
+.liquid-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: var(--blur-light);
+    -webkit-backdrop-filter: var(--blur-light);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: var(--shadow-floating);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--specular-highlight) 50%, 
+        transparent 100%);
+    opacity: 0.8;
+}
+
+.liquid-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    box-shadow: 
+        var(--shadow-elevated),
+        var(--glow-soft);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Кнопки в стиле Liquid Glass */
+.liquid-btn {
+    background: linear-gradient(135deg, 
+        var(--liquid-primary) 0%, 
+        rgba(0, 122, 255, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(0, 122, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.liquid-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.liquid-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 32px rgba(0, 122, 255, 0.4),
+        var(--glow-accent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.liquid-btn:hover::before {
+    left: 100%;
+}
+
+.liquid-btn:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 2px 8px rgba(0, 122, 255, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Вторичные кнопки */
+.liquid-btn-secondary {
+    background: var(--glass-white);
+    backdrop-filter: var(--blur-light);
+    -webkit-backdrop-filter: var(--blur-light);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--liquid-primary);
+}
+
+.liquid-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--liquid-primary);
+}
+
+/* Формы в стиле Liquid Glass */
+.liquid-input {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: var(--blur-light);
+    -webkit-backdrop-filter: var(--blur-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: var(--black-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.liquid-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--liquid-primary);
+    box-shadow: 
+        0 0 0 3px rgba(0, 122, 255, 0.1),
+        var(--glow-accent);
+}
+
+.liquid-input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Модальные окна */
+.liquid-modal {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: var(--blur-heavy);
+    -webkit-backdrop-filter: var(--blur-heavy);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow: var(--shadow-modal);
+}
+
+/* Навигационные элементы */
+.liquid-nav {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Эффекты освещения для интерактивных элементов */
+.liquid-interactive {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-interactive::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.liquid-interactive:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: all 0.1s ease;
+}
+
+/* Анимации в стиле Liquid Glass */
+@keyframes liquidFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-10px) rotate(1deg); 
+    }
+}
+
+@keyframes liquidGlow {
+    0%, 100% { 
+        box-shadow: var(--shadow-floating); 
+    }
+    50% { 
+        box-shadow: 
+            var(--shadow-elevated), 
+            var(--glow-soft); 
+    }
+}
+
+.liquid-float {
+    animation: liquidFloat 6s ease-in-out infinite;
+}
+
+.liquid-glow {
+    animation: liquidGlow 4s ease-in-out infinite;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .liquid-glass,
+    .liquid-panel,
+    .liquid-card {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .liquid-btn {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+    
+    .liquid-input {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Высокая плотность пикселей */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .liquid-glass,
+    .liquid-panel,
+    .liquid-card {
+        border-width: 0.5px;
+    }
+}

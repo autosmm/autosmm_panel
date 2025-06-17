@@ -1,0 +1,183 @@
+/* Современные всплывающие подсказки для кнопок меню */
+
+/* Базовые стили для контейнера подсказок */
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Стили для подсказки */
+.tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    left: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+}
+
+/* Стрелка подсказки */
+.tooltip::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -6px;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 6px 6px 6px 0;
+    border-color: transparent #2d2d2d transparent transparent;
+    filter: drop-shadow(-1px 0px 1px rgba(0, 0, 0, 0.1));
+}
+
+/* Заголовок подсказки */
+.tooltip-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* Описание подсказки */
+.tooltip-description {
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.3;
+}
+
+/* Показать подсказку при наведении */
+.tooltip-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-50%) translateX(8px);
+}
+
+/* Анимация появления */
+@keyframes tooltipFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-5px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(8px) scale(1);
+    }
+}
+
+.tooltip-wrapper:hover .tooltip {
+    animation: tooltipFadeIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Адаптивность для мобильных устройств */
+@media screen and (max-width: 768px) {
+    .tooltip {
+        left: 150%;
+        font-size: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        white-space: normal;
+        max-width: 200px;
+    }
+    
+    .tooltip-title {
+        font-size: 13px;
+    }
+    
+    .tooltip-description {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tooltip {
+        left: 100%;
+        top: -60px;
+        transform: translateX(0);
+        max-width: 180px;
+    }
+    
+    .tooltip::before {
+        top: 100%;
+        left: 20px;
+        transform: translateX(-50%);
+        border-width: 0 6px 6px 6px;
+        border-color: transparent transparent #2d2d2d transparent;
+    }
+    
+    .tooltip-wrapper:hover .tooltip {
+        transform: translateY(-8px) translateX(0);
+    }
+}
+
+/* Специальные стили для разных типов подсказок */
+.tooltip.primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(15, 51, 239, 0.9) 100%);
+}
+
+.tooltip.primary::before {
+    border-color: transparent var(--primary-color) transparent transparent;
+}
+
+.tooltip.success {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.tooltip.success::before {
+    border-color: transparent #16a34a transparent transparent;
+}
+
+.tooltip.warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.tooltip.warning::before {
+    border-color: transparent #d97706 transparent transparent;
+}
+
+/* Эффект микроанимации при наведении на иконку */
+.tooltip-wrapper:hover .icon-container {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Улучшенная анимация появления для подсказки */
+.tooltip-wrapper:hover .tooltip {
+    animation: 
+        tooltipFadeIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+        tooltipGlow 2s ease-in-out infinite alternate 0.3s;
+}
+
+@keyframes tooltipGlow {
+    0% {
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.3),
+            0 6px 20px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.4),
+            0 8px 25px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            0 0 20px rgba(255, 255, 255, 0.05);
+    }
+}

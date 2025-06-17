@@ -1,0 +1,13 @@
+/* Принудительное выравнивание по левому краю */
+.card-title,
+.user-title,
+.card-content,
+.instruction-card,
+.user-info {
+    text-align: left !important;
+}
+
+.card-header {
+    align-items: flex-start !important;
+    text-align: left !important;
+}

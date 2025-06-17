@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Navigation</title>
+    <script>
+        // Автоматическое нажатие на кнопку "Портфель" для тестирования
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Ищем кнопку с data-page="manageSpheres"
+                const sphereButton = document.querySelector('[data-page="manageSpheres"]');
+                if (sphereButton) {
+                    console.log('Кнопка найдена, кликаем...');
+                    sphereButton.click();
+                } else {
+                    console.log('Кнопка не найдена');
+                }
+            }, 2000);
+        });
+    </script>
+</head>
+<body>
+    <iframe src="index.html" width="100%" height="800px" style="border: none;"></iframe>
+</body>
+</html>

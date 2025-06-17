@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0F33EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="6" width="20" height="12" rx="2" />
+  <path d="M12 12h.01" />
+  <path d="M17 12h.01" />
+  <path d="M7 12h.01" />
+  <path d="M2 10h20" />
+  <path d="M2 14h20" />
+  <path d="M6 6V4" />
+  <path d="M18 6V4" />
+  <path d="M12 6V4" />
+  <path d="M6 18v2" />
+  <path d="M18 18v2" />
+  <path d="M12 18v2" />
+</svg>

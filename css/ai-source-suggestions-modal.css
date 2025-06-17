@@ -1,0 +1,826 @@
+/* Стили для модального окна предложенных AI источников в стиле Apple iOS 26 "Liquid Glass" */
+
+/* Переменные для AI источников */
+:root {
+    --ai-source-primary: #007AFF;
+    --ai-source-secondary: #5856D6;
+    --ai-source-success: #34C759;
+    --ai-source-warning: #FF9500;
+    --ai-source-error: #FF3B30;
+    --ai-source-purple: #AF52DE;
+    --ai-source-bg: rgba(255, 255, 255, 0.15);
+    --ai-source-border: rgba(255, 255, 255, 0.25);
+    --ai-source-glass: rgba(255, 255, 255, 0.95);
+}
+
+/* Модальное окно AI источников */
+.ai-source-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-source-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ai-source-modal-container {
+    background: var(--ai-source-glass);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: 1px solid var(--ai-source-border);
+    border-radius: 32px;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 
+        0 32px 80px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.ai-source-modal-overlay.active .ai-source-modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Заголовок модального окна AI источников */
+.ai-source-modal-header {
+    padding: 32px 32px 24px 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    background: linear-gradient(135deg, 
+        rgba(88, 86, 214, 0.15) 0%, 
+        rgba(175, 82, 222, 0.15) 100%);
+}
+
+.ai-source-modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        transparent 100%);
+}
+
+.ai-source-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black-color);
+    margin: 0 0 8px 0;
+    background: linear-gradient(135deg, var(--ai-source-secondary) 0%, var(--ai-source-purple) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ai-source-modal-subtitle {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.ai-source-modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ai-source-modal-close:hover {
+    background: rgba(255, 59, 48, 0.15);
+    color: var(--ai-source-error);
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.3);
+}
+
+/* Содержимое модального окна AI источников */
+.ai-source-modal-content {
+    padding: 32px;
+    max-height: calc(90vh - 120px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(88, 86, 214, 0.3) transparent;
+}
+
+.ai-source-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ai-source-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ai-source-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(88, 86, 214, 0.3);
+    border-radius: 3px;
+}
+
+.ai-source-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(88, 86, 214, 0.5);
+}
+
+/* Фильтры по категориям */
+.ai-source-filters {
+    margin-bottom: 32px;
+}
+
+.filters-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin: 0 0 16px 0;
+}
+
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    min-height: 44px;
+}
+
+.category-tab:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}
+
+.category-tab.active {
+    background: var(--ai-source-secondary);
+    color: white;
+    border-color: var(--ai-source-secondary);
+    box-shadow: 0 4px 16px rgba(88, 86, 214, 0.3);
+}
+
+.tab-icon {
+    font-size: 16px;
+}
+
+.tab-name {
+    font-weight: 600;
+}
+
+.tab-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.category-tab.active .tab-count {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Статистика выбора */
+.ai-selection-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+}
+
+.stats-item {
+    text-align: center;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ai-source-secondary);
+    margin-bottom: 4px;
+}
+
+.stats-label {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+}
+
+/* Сетка AI источников */
+.ai-sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.ai-source-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+}
+
+.ai-source-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 100%);
+}
+
+.ai-source-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.ai-source-card.selected {
+    background: rgba(88, 86, 214, 0.2);
+    border-color: var(--ai-source-secondary);
+    box-shadow: 
+        0 12px 40px rgba(88, 86, 214, 0.3),
+        0 0 30px rgba(88, 86, 214, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ai-source-card.popular {
+    border-color: var(--ai-source-warning);
+    background: rgba(255, 149, 0, 0.05);
+}
+
+/* Значки карточек */
+.popularity-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--ai-source-warning);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.verified-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background: var(--ai-source-success);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.selection-indicator {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.ai-source-card.selected .selection-indicator {
+    opacity: 1;
+    transform: scale(1);
+    background: var(--ai-source-success);
+    border-color: var(--ai-source-success);
+    box-shadow: 0 4px 16px rgba(52, 199, 89, 0.4);
+}
+
+/* Заголовок карточки источника */
+.ai-source-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    margin-top: 12px;
+}
+
+.ai-source-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ai-source-platform {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Информация об источнике */
+.ai-source-info {
+    margin-bottom: 16px;
+}
+
+.ai-source-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black-color);
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.ai-source-description {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Теги источника */
+.ai-source-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.source-tag {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Статистика источника */
+.ai-source-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.ai-source-stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black-color);
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+}
+
+/* Кнопки действий AI источников */
+.ai-source-modal-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.ai-source-modal-actions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.ai-source-btn {
+    padding: 16px 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    min-width: 140px;
+    min-height: 44px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-source-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.ai-source-btn:hover::before {
+    left: 100%;
+}
+
+.ai-source-btn-primary {
+    background: linear-gradient(135deg, var(--ai-source-secondary) 0%, var(--ai-source-purple) 100%);
+    color: white;
+    box-shadow: 
+        0 8px 24px rgba(88, 86, 214, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.ai-source-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(88, 86, 214, 0.35),
+        0 0 25px rgba(88, 86, 214, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.ai-source-btn-primary:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 4px 16px rgba(88, 86, 214, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ai-source-btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ai-source-btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.25);
+    color: rgba(0, 0, 0, 0.9);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 0 20px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.ai-source-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Индикатор загрузки */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+    .ai-source-modal-container {
+        max-width: 95vw;
+        border-radius: 28px;
+    }
+    
+    .ai-source-modal-header {
+        padding: 24px 24px 20px 24px;
+    }
+    
+    .ai-source-modal-content {
+        padding: 24px;
+    }
+    
+    .ai-sources-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+    }
+    
+    .category-tabs {
+        gap: 6px;
+    }
+    
+    .category-tab {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    .ai-selection-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 16px;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .ai-source-modal-overlay {
+        padding: 16px;
+    }
+    
+    .ai-source-modal-container {
+        border-radius: 24px;
+        max-height: 95vh;
+    }
+    
+    .ai-source-modal-header {
+        padding: 20px 20px 16px 20px;
+    }
+    
+    .ai-source-modal-title {
+        font-size: 20px;
+    }
+    
+    .ai-source-modal-subtitle {
+        font-size: 14px;
+    }
+    
+    .ai-source-modal-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .ai-source-modal-content {
+        padding: 20px;
+    }
+    
+    .ai-sources-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .ai-source-card {
+        padding: 20px;
+    }
+    
+    .category-tabs {
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+    
+    .category-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+    
+    .tab-name {
+        display: none;
+    }
+    
+    .ai-selection-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .stats-item {
+        padding: 12px 8px;
+    }
+    
+    .stats-value {
+        font-size: 20px;
+    }
+    
+    .ai-source-modal-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .ai-source-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-source-modal-header {
+        padding: 16px;
+    }
+    
+    .ai-source-modal-content {
+        padding: 16px;
+    }
+    
+    .ai-source-card {
+        padding: 16px;
+    }
+    
+    .ai-source-header {
+        margin-bottom: 12px;
+        margin-top: 8px;
+    }
+    
+    .ai-source-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .category-tab {
+        padding: 6px 8px;
+        min-height: 40px;
+    }
+    
+    .ai-selection-stats {
+        padding: 8px;
+        gap: 6px;
+    }
+    
+    .stats-item {
+        padding: 8px 4px;
+    }
+    
+    .stats-value {
+        font-size: 18px;
+    }
+    
+    .stats-label {
+        font-size: 10px;
+    }
+}
+
+/* Высокая плотность пикселей */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .ai-source-modal-container,
+    .ai-source-card,
+    .category-tab,
+    .ai-source-btn {
+        border-width: 0.5px;
+    }
+}
+
+/* Темы и дополнительные стили */
+@media (prefers-reduced-motion: reduce) {
+    .ai-source-modal-overlay,
+    .ai-source-modal-container,
+    .ai-source-card,
+    .ai-source-btn,
+    .category-tab {
+        transition: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+    }
+}
+
+/* Поддержка touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .ai-source-card:hover,
+    .ai-source-btn:hover,
+    .category-tab:hover,
+    .ai-source-modal-close:hover {
+        transform: none;
+    }
+    
+    .ai-source-card:active,
+    .ai-source-btn:active,
+    .category-tab:active {
+        transform: scale(0.95);
+    }
+}

@@ -1,0 +1,541 @@
+/* Основной контент */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.main-row {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Левый блок - AutoSMM в режиме ОБТ */
+.info-block {
+    flex: 1;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+    border: 1px solid var(--white-color);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.info-block-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+}
+
+.info-block-title span {
+    color: var(--primary-color);
+}
+
+.info-block-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.info-features {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+.info-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-feature-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.25em;
+    color: var(--primary-color);
+}
+
+.infinity-icon {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 0.625em;
+    color: var(--primary-color);
+}
+
+.info-feature-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    text-align: center;
+}
+
+.info-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+}
+
+.support-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 32px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 40px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.support-button:hover {
+    background-color: #0b2ad9;
+}
+
+.play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    background-color: var(--primary-color);
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #0b2ad9;
+}
+
+.play-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.robot-image {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.3;
+    transition: opacity 0.3s ease, right 0.3s ease, transform 0.3s ease;
+}
+
+/* Правый блок - Этапы начала работы */
+.steps-block {
+    flex: 0.6; /* Уменьшено с 1 до 0.6, чтобы сделать блок меньше по размеру */
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    border: 1px solid var(--white-color);
+    border-radius: 16px;
+    padding: 32px; /* Уменьшено с 40px до 32px для более компактного вида */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Уменьшено с 16px до 12px для более компактного вида */
+}
+
+.steps-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    margin-bottom: 4px; /* Уменьшено с 8px до 4px */
+}
+
+.step-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px; /* Уменьшено с 16px до 12px */
+    width: 100%;
+    padding: 8px 12px; /* Уменьшено с 12px 16px до 8px 12px */
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 6px; /* Уменьшено с 8px до 6px */
+    text-decoration: none;
+}
+
+.step-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px; /* Уменьшено с 20px до 18px */
+    line-height: 1em;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px; /* Уменьшено с 40px до 34px */
+    height: 34px; /* Уменьшено с 40px до 34px */
+}
+
+.step-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    flex: 1;
+    width: calc(100% - 46px); /* Адаптировано под новый размер шага */
+}
+
+.step-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary-color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(15, 51, 239, 0.15);
+    transform: translateY(-2px);
+}
+
+.step-item:hover::before {
+    opacity: 1;
+}
+
+/* Применение эффекта нажатия */
+.step-item.clicked {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(15, 51, 239, 0.2);
+}
+
+/* Изменение цвета при наведении */
+.step-item:hover .step-number {
+    color: var(--black-color);
+}
+
+/* Дополнительный элемент для эффекта после */
+.step-item::after {
+    content: '→';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1em;
+    color: var(--black-color);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.step-item:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Инструкции */
+.instructions-section {
+    margin-top: 32px;
+}
+
+.instructions-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.25em;
+    color: var(--black-color);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 992px) {
+    .main-row {
+        flex-direction: column;
+    }
+    
+    .info-block, .steps-block {
+        width: 100%;
+    }
+    
+    .robot-image {
+        right: -20px;
+        opacity: 0.7;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .info-block, .steps-block {
+        padding: 30px;
+    }
+    
+    .robot-image {
+        right: -80px;
+    }
+    
+    .steps-title {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .main-container {
+        padding: 15px;
+    }
+    
+    .info-block, .steps-block {
+        padding: 20px;
+    }
+    
+    .info-block-title {
+        font-size: 24px;
+    }
+    
+    .info-block-subtitle {
+        font-size: 14px;
+    }
+    
+    .info-features {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .info-feature {
+        min-width: 85px;
+    }
+    
+    .info-feature-value {
+        font-size: 22px;
+    }
+    
+    .infinity-icon {
+        font-size: 40px;
+    }
+    
+    .info-feature-label {
+        font-size: 11px;
+    }
+    
+    .info-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .support-button {
+        width: 100%;
+    }
+    
+    .play-button {
+        width: 48px;
+        height: 48px;
+        align-self: center;
+    }
+    
+    .robot-image {
+        opacity: 0.15;
+        right: -50%;
+        transform: translateX(25%);
+    }
+    
+    .steps-title {
+        font-size: 16px;
+    }
+    
+    .step-number {
+        font-size: 16px; /* Уменьшено с 18px до 16px */
+        width: 28px; /* Уменьшено с 30px до 28px */
+    }
+    
+    .step-text {
+        font-size: 11px;
+    }
+    
+    .step-item {
+        padding: 8px 10px; /* Уменьшено с 10px 12px до 8px 10px */
+    }
+    
+    .step-item::after {
+        font-size: 12px; /* Уменьшено с 14px до 12px */
+    }
+}
+
+/* Поддержка для режима с открытым меню */
+.content-wrapper.menu-open .robot-image {
+    right: -80px;
+}
+
+@media screen and (max-width: 1200px) {
+    .content-wrapper.menu-open .robot-image {
+        right: -100px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .content-wrapper.menu-open .robot-image {
+        opacity: 0.2;
+    }
+}
+
+/* Смещение контента при открытом меню */
+.content-wrapper.menu-open {
+    margin-left: 270px; /* Было 320px, сдвинуто влево на 50px */
+}
+
+@media screen and (max-width: 1024px) {
+    .content-wrapper.menu-open {
+        margin-left: 230px; /* Было 280px, сдвинуто влево на 50px */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content-wrapper.menu-open {
+        margin-left: 190px; /* Было 240px, сдвинуто влево на 50px */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content-wrapper.menu-open {
+        margin-left: 150px; /* Было 200px, сдвинуто влево на 50px */
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .content-wrapper.menu-open {
+        margin-left: 130px; /* Было 180px, сдвинуто влево на 50px */
+    }
+}/* Корректировка для мобильного меню на весь экран */
+@media screen and (max-width: 480px) {
+    .content-wrapper.menu-open {
+        margin-left: 0; /* На мобильных устройствах содержимое не сдвигается, а скрывается под меню */
+    }
+}/* Стили для страниц с заглушками */
+.content-page {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.page-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: var(--black-color);
+}
+
+.construction-notice {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.construction-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+}
+
+.construction-notice h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: var(--black-color);
+}
+
+.construction-notice p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--gray-color);
+    margin-bottom: 8px;
+}
+
+/* Адаптивность для страниц с заглушками */
+@media screen and (max-width: 768px) {
+    .content-page {
+        padding: 24px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .construction-notice {
+        padding: 20px 10px;
+    }
+    
+    .construction-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .construction-notice h2 {
+        font-size: 18px;
+    }
+    
+    .construction-notice p {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content-page {
+        padding: 16px;
+    }
+    
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .construction-notice h2 {
+        font-size: 16px;
+    }
+    
+    .construction-notice p {
+        font-size: 12px;
+    }
+}

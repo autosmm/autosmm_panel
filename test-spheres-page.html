@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Spheres Page</title>
+    <script>
+        // Автоматический переход на страницу сфер деятельности
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Эмулируем переход по хешу
+                window.location.hash = '#manageSpheres';
+                
+                // Ждем загрузки и принудительно вызываем навигацию
+                setTimeout(() => {
+                    const sphereButton = document.querySelector('[data-page="manageSpheres"]');
+                    if (sphereButton) {
+                        sphereButton.click();
+                    }
+                }, 1000);
+            }, 1000);
+        });
+    </script>
+</head>
+<body>
+    <iframe src="index.html#manageSpheres" width="100%" height="1000px" style="border: none;"></iframe>
+</body>
+</html>

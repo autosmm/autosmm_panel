@@ -1,0 +1,165 @@
+/* Стили для страниц в разработке */
+
+.construction-notice {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
+    border-radius: 16px;
+    border: 2px dashed var(--primary-color);
+    margin: 40px 0;
+}
+
+.construction-notice h2 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.construction-notice p {
+    color: var(--black-color);
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.construction-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+    opacity: 0.7;
+}
+
+.features-preview {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(15, 51, 239, 0.1);
+}
+
+.features-preview h3 {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.features-preview ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-preview li {
+    padding: 12px 0;
+    font-size: 14px;
+    color: var(--black-color);
+    border-bottom: 1px solid rgba(15, 51, 239, 0.1);
+    transition: all 0.3s ease;
+}
+
+.features-preview li:last-child {
+    border-bottom: none;
+}
+
+.features-preview li:hover {
+    background-color: rgba(15, 51, 239, 0.05);
+    padding-left: 8px;
+    border-radius: 4px;
+}
+
+/* Стили для хлебных крошек */
+.breadcrumbs {
+    margin-bottom: 24px;
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    font-size: 14px;
+    color: var(--gray-color);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--black-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--black-color);
+    font-weight: 500;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    margin-left: 8px;
+    color: var(--gray-color);
+}
+
+/* Заголовки страниц */
+.page-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin-bottom: 24px;
+}
+
+.content-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+    .construction-notice {
+        padding: 40px 15px;
+    }
+    
+    .construction-notice h2 {
+        font-size: 20px;
+    }
+    
+    .construction-notice p {
+        font-size: 14px;
+    }
+    
+    .construction-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .features-preview {
+        padding: 16px;
+    }
+    
+    .features-preview h3 {
+        font-size: 16px;
+    }
+    
+    .features-preview li {
+        font-size: 13px;
+        padding: 10px 0;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+}

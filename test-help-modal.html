@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Help Modal</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/liquid-glass.css">
+<link rel="stylesheet" href="css/spheres-page.css">
+<link rel="stylesheet" href="css/edit-sphere-modal.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background: linear-gradient(135deg, rgba(240, 248, 255, 0.3) 0%, rgba(230, 240, 255, 0.1) 100%); min-height: 100vh; padding: 20px; overflow: hidden;">
+    
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1>Тестирование модального окна справки</h1>
+        <p>Кнопка "Мне нужна помощь" открывает детальное руководство</p>
+    </div>
+
+    <!-- Модальное окно справки (сразу открыто для демонстрации) -->
+    <div class="liquid-modal-overlay help-modal show">
+        <div class="liquid-modal-container help-container">
+            <div class="liquid-modal-header">
+                <h2 class="modal-title">Справка по настройке сфер деятельности</h2>
+                <button class="modal-close-btn" onclick="closeHelpModal()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="liquid-modal-content help-content">
+                <div class="help-section">
+                    <div class="help-icon">📝</div>
+                    <h3>Название сферы</h3>
+                    <p>Укажите основную область вашей деятельности. Это поможет ИИ лучше понимать контекст при создании постов.</p>
+                    <div class="help-examples">
+                        <strong>Примеры:</strong> IT-консалтинг, Маркетинг, E-commerce, Образование, Здоровье
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <div class="help-icon">🏢</div>
+                    <h3>Название бренда</h3>
+                    <p>Имя вашей компании или личного бренда, которое будет использоваться в постах и упоминаниях.</p>
+                    <div class="help-examples">
+                        <strong>Примеры:</strong> TechSolutions Pro, МойМаркетинг, ЗдоровыйОбраз
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <div class="help-icon">📋</div>
+                    <h3>Описание сферы</h3>
+                    <p>Детальное описание вашей деятельности. ИИ использует эту информацию для создания релевантного контента.</p>
+                    <div class="help-examples">
+                        <strong>Совет:</strong> Указывайте целевую аудиторию, основные услуги и особенности
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <div class="help-icon">🎯</div>
+                    <h3>Целевая аудитория</h3>
+                    <p>Опишите вашу основную аудиторию. Это влияет на стиль и содержание генерируемых постов.</p>
+                    <div class="help-examples">
+                        <strong>Примеры:</strong> Предприниматели 25-45 лет, IT-специалисты, Молодые мамы
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <div class="help-icon">💬</div>
+                    <h3>Тон общения</h3>
+                    <ul>
+                        <li><strong>Профессиональный</strong> — для B2B и серьезных тем</li>
+                        <li><strong>Дружелюбный</strong> — для широкой аудитории</li>
+                        <li><strong>Неформальный</strong> — для молодежи и развлекательного контента</li>
+                        <li><strong>Экспертный</strong> — для образовательного контента</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <div class="help-icon">🔍</div>
+                    <h3>Ключевые слова</h3>
+                    <p>Термины и фразы, связанные с вашей деятельностью. Помогают ИИ использовать правильную терминологию.</p>
+                    <div class="help-examples">
+                        <strong>Совет:</strong> Используйте 5-10 ключевых слов через запятую
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="liquid-btn" onclick="closeHelpModal()">Понятно, спасибо!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeHelpModal() {
+            const modal = document.querySelector('.help-modal');
+            if (modal) {
+                modal.classList.add('hiding');
+                setTimeout(() => {
+                    modal.classList.remove('show', 'hiding');
+                    showNotification('Справка закрыта', 'info');
+                }, 300);
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-' + type;
+            notification.textContent = message;
+            
+            notification.style.cssText = \`
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: \${type === 'success' ? '#34C759' : type === 'error' ? '#FF3B30' : '#007AFF'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 16px;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            \`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 400);
+            }, 3000);
+        }
+
+        // Демо анимации секций справки
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpSections = document.querySelectorAll('.help-section');
+            helpSections.forEach((section, index) => {
+                section.style.animationDelay = (index * 0.1) + 's';
+                section.style.animation = 'fadeInUp 0.6s ease forwards';
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Улучшение видимости для демонстрации */
+        .help-modal .liquid-modal-container {
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .help-content {
+            max-height: none;
+        }
+    </style>
+</body>
+</html>

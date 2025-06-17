@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Test Direct Navigation</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sidebar-menu.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main-content.css">
+<link rel="stylesheet" href="css/button-effects.css">
+<link rel="stylesheet" href="css/enhanced-button-effects.css">
+<link rel="stylesheet" href="css/tooltips.css">
+<link rel="stylesheet" href="css/card-tooltips.css">
+<link rel="stylesheet" href="css/construction-styles.css">
+<link rel="stylesheet" href="css/liquid-glass.css">
+<link rel="stylesheet" href="css/spheres-page.css">
+<link rel="stylesheet" href="css/instructions-section.css">
+<link rel="stylesheet" href="css/force-left-align.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<script src="templates/page-templates.js"></script>
+<script src="js/content-manager.js" defer></script>
+<script src="js/menu-handler.js" defer></script>
+<script src="js/navigation.js" defer></script>
+<script src="js/tooltip-handler.js" defer></script>
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h1>Тест страницы сфер деятельности</h1>
+        <button onclick="testSpheresNavigation()" style="padding: 10px 20px; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            Перейти к сферам деятельности
+        </button>
+        <button onclick="testCreatePostNavigation()" style="padding: 10px 20px; background: #34C759; color: white; border: none; border-radius: 8px; cursor: pointer; margin-left: 10px;">
+            Перейти к созданию поста
+        </button>
+        
+        <div id="content" style="margin-top: 20px; border: 1px solid #ccc; min-height: 500px;">
+            <!-- Здесь будет отображаться контент -->
+        </div>
+    </div>
+
+    <script>
+        function testSpheresNavigation() {
+            const contentDiv = document.getElementById('content');
+            if (window.pageTemplates && window.pageTemplates.manageSpheres) {
+                contentDiv.innerHTML = window.pageTemplates.manageSpheres;
+                console.log('Страница сфер деятельности загружена');
+            } else {
+                contentDiv.innerHTML = '<p>Ошибка: шаблон не найден</p>';
+                console.log('Ошибка: шаблон manageSpheres не найден');
+                console.log('Доступные шаблоны:', Object.keys(window.pageTemplates || {}));
+            }
+        }
+
+        function testCreatePostNavigation() {
+            const contentDiv = document.getElementById('content');
+            if (window.pageTemplates && window.pageTemplates.createPost) {
+                contentDiv.innerHTML = window.pageTemplates.createPost;
+                console.log('Страница создания поста загружена');
+            } else {
+                contentDiv.innerHTML = '<p>Ошибка: шаблон не найден</p>';
+                console.log('Ошибка: шаблон createPost не найден');
+            }
+        }
+
+        // Автоматический тест при загрузке
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                console.log('Начинаем автоматический тест...');
+                testSpheresNavigation();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
